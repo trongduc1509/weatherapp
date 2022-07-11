@@ -25,7 +25,7 @@ class SearchPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   const Text(
-                    'Weather App',
+                    'Weather Forecast',
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 32.0,
@@ -44,6 +44,7 @@ class SearchPage extends StatelessWidget {
                     decoration: const InputDecoration(
                         prefixIcon: Icon(Icons.search),
                         hintText: 'City Name',
+                        hintStyle: TextStyle(color: Colors.white),
                         enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.all(Radius.circular(10)),
                             borderSide: BorderSide(
