@@ -6,7 +6,7 @@ class Weather {
   final double tempC;
   final double feelsLikeC;
   final double windKph;
-  final int uvIndex;
+  final double uvIndex;
   final List<WeatherForecast> forecastList;
 
   Weather(
@@ -22,7 +22,7 @@ class Weather {
 
   factory Weather.fromJson(Map<String, dynamic> json) {
     final List<WeatherForecast> tempForecastList = [];
-    for (int i = 0; i <= 22; i++) {
+    for (int i = 0; i <= 22; i += 2) {
       tempForecastList.add(WeatherForecast(
           time: json['forecast']['forecastday'][0]['hour'][i]['time'],
           iconCondition: json['forecast']['forecastday'][0]['hour'][i]
@@ -48,7 +48,7 @@ class WeatherForecast {
   final String time;
   final String iconCondition;
   final String textCondition;
-  final String tempC;
+  final double tempC;
 
   WeatherForecast(
       {required this.time,

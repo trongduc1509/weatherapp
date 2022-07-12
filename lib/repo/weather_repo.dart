@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:flutter/services.dart';
 import 'package:http/http.dart';
 import 'package:weather_app/models/weather.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
