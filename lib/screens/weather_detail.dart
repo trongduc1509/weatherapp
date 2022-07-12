@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weather_app/bloc/weather_bloc.dart';
 import 'package:weather_app/constants/weather_decor.dart';
 import 'package:weather_app/models/weather.dart';
 
@@ -180,6 +182,11 @@ class WeatherDetail extends StatelessWidget {
             ),
           ),
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () =>
+            BlocProvider.of<WeatherBloc>(context).add(WeatherReset()),
+        child: const Icon(Icons.refresh),
       ),
     );
   }

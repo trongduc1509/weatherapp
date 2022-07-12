@@ -11,7 +11,6 @@ class SearchPage extends StatelessWidget {
     TextEditingController cityController = TextEditingController();
     return Scaffold(
       backgroundColor: Colors.cyan[50],
-      appBar: const MyAppBar(),
       body: SafeArea(
         child: Container(
           constraints: const BoxConstraints.expand(),
@@ -42,6 +41,7 @@ class SearchPage extends StatelessWidget {
                   ),
                   const SizedBox(height: 24.0),
                   TextFormField(
+                    style: const TextStyle(color: Colors.white),
                     controller: cityController,
                     decoration: const InputDecoration(
                         prefixIcon: Icon(Icons.search),

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart';
 import 'package:weather_app/bloc/weather_bloc.dart';
+import 'package:weather_app/constants/appbar.dart';
 import 'package:weather_app/repo/weather_repo.dart';
 import 'package:weather_app/screens/weather_detail.dart';
 import './screens/search.dart';
@@ -39,21 +40,30 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocBuilder<WeatherBloc, WeatherState>(
-        builder: (context, state) {
-          if (state is WeatherNotSearch) {
-            return const SearchPage();
+      appBar: const MyAppBar(),
+      body: BlocListener<WeatherBloc, WeatherState>(
+        listener: (context, state) {
+          if (state is WeatherNotFound) {
+            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                backgroundColor: Colors.red,
+                content: Text(
+                  'Invalid location!',
+                  style: TextStyle(
+                      color: Colors.white, fontWeight: FontWeight.w500),
+                )));
           }
-          if (state is WeatherSearching) {
-            return const Center(child: CircularProgressIndicator());
-          }
-          if (state is WeatherFound) {
-            return WeatherDetail(weather: state.getWeather);
-          }
-          return const SnackBar(
-              content:
-                  Text('Invalid location! Please enter a valid location!'));
         },
+        child: BlocBuilder<WeatherBloc, WeatherState>(
+          builder: (context, state) {
+            if (state is WeatherSearching) {
+              return const Center(child: CircularProgressIndicator());
+            }
+            if (state is WeatherFound) {
+              return WeatherDetail(weather: state.getWeather);
+            }
+            return const SearchPage();
+          },
+        ),
       ),
     );
   }
