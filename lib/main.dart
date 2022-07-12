@@ -1,8 +1,5 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:http/http.dart';
 import 'package:weather_app/bloc/weather_bloc.dart';
 import 'package:weather_app/constants/appbar.dart';
 import 'package:weather_app/repo/weather_repo.dart';
