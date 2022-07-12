@@ -9,22 +9,13 @@ import 'package:weather_app/screens/weather_detail.dart';
 import './screens/search.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-import 'models/weather.dart';
-
 void main() async {
   await dotenv.load();
-  final response = await get(Uri.parse(
-      'http://api.weatherapi.com/v1/forecast.json?key=e32c5fceb05b432a80551045221007&q=Paris'));
-  final weather = Weather.fromJson(jsonDecode(response.body));
-  runApp(MyApp(
-    weather: weather,
-  ));
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key, required this.weather}) : super(key: key);
-
-  final Weather weather;
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -37,9 +28,7 @@ class MyApp extends StatelessWidget {
               create: (context) => WeatherBloc(WeatherRepo()),
             ),
           ],
-          child: WeatherDetail(
-            weather: weather,
-          ),
+          child: const MyHomePage(),
         ));
   }
 }
@@ -61,7 +50,9 @@ class MyHomePage extends StatelessWidget {
           if (state is WeatherFound) {
             return WeatherDetail(weather: state.getWeather);
           }
-          return const SnackBar(content: Text('Something went wrong!'));
+          return const SnackBar(
+              content:
+                  Text('Invalid location! Please enter a valid location!'));
         },
       ),
     );

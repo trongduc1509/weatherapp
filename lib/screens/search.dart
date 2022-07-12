@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weather_app/bloc/weather_bloc.dart';
 import 'package:weather_app/constants/appbar.dart';
 
 class SearchPage extends StatelessWidget {
@@ -56,7 +58,8 @@ class SearchPage extends StatelessWidget {
                     height: 50.0,
                     width: double.infinity,
                     child: TextButton(
-                      onPressed: () {},
+                      onPressed: () => BlocProvider.of<WeatherBloc>(context)
+                          .add(WeatherFetch(cityController.text.trim())),
                       style: TextButton.styleFrom(
                           backgroundColor: Colors.blue,
                           shape: RoundedRectangleBorder(

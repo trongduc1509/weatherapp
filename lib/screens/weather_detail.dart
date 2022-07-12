@@ -7,44 +7,6 @@ class WeatherDetail extends StatelessWidget {
 
   const WeatherDetail({Key? key, required this.weather}) : super(key: key);
 
-  static List<WeatherForecast> tempList = [
-    WeatherForecast(
-        time: '2022-07-12 00:00',
-        iconCondition: '',
-        textCondition: 'Overcast',
-        tempC: 22.6),
-    WeatherForecast(
-        time: '2022-07-12 00:00',
-        iconCondition: '',
-        textCondition: 'Overcast',
-        tempC: 22.6),
-    WeatherForecast(
-        time: '2022-07-12 00:00',
-        iconCondition: '',
-        textCondition: 'Overcast',
-        tempC: 22.6),
-    WeatherForecast(
-        time: '2022-07-12 00:00',
-        iconCondition: '',
-        textCondition: 'Overcast',
-        tempC: 22.6),
-    WeatherForecast(
-        time: '2022-07-12 00:00',
-        iconCondition: '',
-        textCondition: 'Overcast',
-        tempC: 22.6),
-    WeatherForecast(
-        time: '2022-07-12 00:00',
-        iconCondition: '',
-        textCondition: 'Overcast',
-        tempC: 22.6),
-    WeatherForecast(
-        time: '2022-07-12 00:00',
-        iconCondition: '',
-        textCondition: 'Overcast',
-        tempC: 22.6),
-  ];
-
   Widget currentWeather(Weather item) {
     return Container(
       margin: const EdgeInsets.all(20.0),
@@ -188,9 +150,11 @@ class WeatherDetail extends StatelessWidget {
       body: SafeArea(
         child: Container(
           constraints: const BoxConstraints.expand(),
-          decoration: const BoxDecoration(
+          decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage("assets/images/day.png"),
+              image: (weather.iconCondition.contains('day'))
+                  ? const AssetImage("assets/images/day.png")
+                  : const AssetImage("assets/images/night.jpg"),
               fit: BoxFit.fill,
             ),
           ),
